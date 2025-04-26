@@ -26,12 +26,12 @@ mcpServer.tool(
 
 let transport: SSEServerTransport | null = null;
 
-export const sseGet = (res: Response) => {
+export const sseGetController = (_: Request, res: Response) => {
   transport = new SSEServerTransport("/sse", res);
   mcpServer.connect(transport);
 };
 
-export const ssePost = (req: Request, res: Response) => {
+export const ssePostController = (req: Request, res: Response) => {
   if (transport) {
     transport.handlePostMessage(req, res);
   }

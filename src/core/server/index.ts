@@ -1,16 +1,15 @@
 import express from "express";
-import { sseGet, ssePost } from "./mcp";
+import { sseGetController, ssePostController } from "./mcp";
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
 
-app.get("/sse", (req, res) => {
-  sseGet(res);
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.post("/sse", (req, res) => {
-  ssePost(req, res);
-});
+app.get("/sse", sseGetController);
+
+app.post("/sse", ssePostController);
 
 export const startServer = () => {
   app.listen(port, () =>
