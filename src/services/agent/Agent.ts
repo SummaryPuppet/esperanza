@@ -1,7 +1,7 @@
 import { ContextManager } from "../context";
+import { EmotionService } from "../emotion";
 import { MemoryManager } from "../memories";
 import { askModel } from "../models";
-import { EmotionService } from "./emotions";
 
 export class Agent {
   private static instance: Agent | null = null;
