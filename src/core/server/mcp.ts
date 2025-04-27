@@ -9,7 +9,7 @@ const mcpServer = new McpServer({
 });
 
 mcpServer.tool(
-  "greatting",
+  "greetting",
   "Tool for greatting to user",
   { name: z.string().describe("User name") },
   async ({ name }) => {
