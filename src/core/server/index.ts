@@ -1,6 +1,8 @@
 import express from "express";
 import { agentController } from "./agent";
+import { emotionGetController } from "./emotion";
 import { sseGetController, ssePostController } from "./mcp";
+import { memoriesGetController } from "./memories";
 import { askModelController } from "./models";
 import { textToSpeechController } from "./voice";
 
@@ -19,6 +21,10 @@ app.post("/say", textToSpeechController);
 app.post("/ask", askModelController);
 
 app.post("/agent", agentController);
+
+app.get("/emotion", emotionGetController);
+
+app.get("/memories", memoriesGetController);
 
 export const startServer = () => {
   app.listen(port, () =>
