@@ -1,4 +1,5 @@
 import express from "express";
+import { agentController } from "./agent";
 import { sseGetController, ssePostController } from "./mcp";
 import { askModelController } from "./models";
 import { textToSpeechController } from "./voice";
@@ -16,6 +17,8 @@ app.post("/sse", ssePostController);
 app.post("/say", textToSpeechController);
 
 app.post("/ask", askModelController);
+
+app.post("/agent", agentController);
 
 export const startServer = () => {
   app.listen(port, () =>
