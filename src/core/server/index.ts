@@ -67,6 +67,10 @@ app.get("/emotion", emotionGetController);
  */
 app.get("/memories", memoriesGetController);
 
+app.get("/", (req, res) => {
+  res.send("Esperanza is running!");
+});
+
 /**
  * Starts the server on the specified port.
  * @returns {void}
