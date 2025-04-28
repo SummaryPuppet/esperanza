@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EmotionService } from "../../services/emotion";
+import { EmotionService } from "../../../services/emotion";
 
 export const emotionGetController = async (_: Request, res: Response) => {
   const emotionService = EmotionService.getInstance();

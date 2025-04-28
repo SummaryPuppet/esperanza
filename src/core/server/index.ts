@@ -4,12 +4,12 @@
  */
 
 import express from "express";
-import { agentController } from "./agent";
-import { emotionGetController } from "./emotion";
-import { sseGetController, ssePostController } from "./mcp";
-import { memoriesGetController } from "./memories";
-import { askModelController } from "./models";
-import { textToSpeechController } from "./voice";
+import agentRouter from "./routes/agent.route";
+import emotionRouter from "./routes/emotion.route";
+import mcpRouter from "./routes/mcp.route";
+import memoriesRouter from "./routes/memories.route";
+import modelsRouter from "./routes/models.route";
+import voiceRouter from "./routes/voice.route";
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
@@ -18,58 +18,21 @@ const port = process.env.SERVER_PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/**
- * Endpoint for establishing SSE (Server-Sent Events) connection.
- * Allows real-time communication from server to client.
- * @route GET /sse
- */
-app.get("/sse", sseGetController);
-
-/**
- * Endpoint for receiving messages through the SSE connection.
- * @route POST /sse
- */
-app.post("/sse", ssePostController);
-
-/**
- * Endpoint for converting text to speech.
- * @route POST /say
- * @param {Object} req.body - Request body
- * @param {string} req.body.text - Text to convert to speech
- */
-app.post("/say", textToSpeechController);
-
-/**
- * Endpoint for sending questions directly to the language model.
- * @route POST /ask
- * @param {Object} req.body - Request body
- * @param {string} req.body.question - Question to process
- */
-app.post("/ask", askModelController);
-
-/**
- * Endpoint for interacting with the Esperanza agent.
- * @route POST /agent
- * @param {Object} req.body - Request body
- * @param {string} req.body.question - Question for the agent
- */
-app.post("/agent", agentController);
-
-/**
- * Endpoint for retrieving the current emotional state of the agent.
- * @route GET /emotion
- */
-app.get("/emotion", emotionGetController);
-
-/**
- * Endpoint for retrieving memories stored by the agent.
- * @route GET /memories
- */
-app.get("/memories", memoriesGetController);
-
 app.get("/", (req, res) => {
   res.send("Esperanza is running!");
 });
+
+app.use("/", agentRouter);
+
+app.use("/", emotionRouter);
+
+app.use("/", memoriesRouter);
+
+app.use("/", mcpRouter);
+
+app.use("/", modelsRouter);
+
+app.use("/", voiceRouter);
 
 /**
  * Starts the server on the specified port.

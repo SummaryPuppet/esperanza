@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Agent } from "../../services/agent/Agent";
+import { Agent } from "../../../services/agent/Agent";
 
 export const agentController = async (req: Request, res: Response) => {
   const { question } = req.body;

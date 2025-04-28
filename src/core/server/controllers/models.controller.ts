@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { askModel } from "../../services/models";
+import { askModel } from "../../../services/models";
 
 export const askModelController = async (req: Request, res: Response) => {
   const { question } = req.body;

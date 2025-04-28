@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { MemoryManager } from "../../services/memories";
+import { MemoryManager } from "../../../services/memories";
 
 export const memoriesGetController: RequestHandler = async (_, res) => {
   const memoryManager = MemoryManager.getInstance();

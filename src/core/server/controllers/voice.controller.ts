@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { z } from "zod";
-import { textToSpeech } from "../../services/voice";
+import { textToSpeech } from "../../../services/voice";
 
 const textToSpeechSchema = z.object({
   text: z.string().min(1, "Text is required"),
