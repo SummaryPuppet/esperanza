@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { RequestHandler } from "express";
 import { MemoryManager } from "../../services/memories";
 
-export const memoriesGetController = async (_: Request, res: Response) => {
-  const memoryManager = new MemoryManager();
-  const memories = await memoryManager.getMemories();
+export const memoriesGetController: RequestHandler = async (_, res) => {
+  const memoryManager = MemoryManager.getInstance();
+  const memories = memoryManager.getMemories();
 
   res.json({
     message: "Memories retrieved successfully",

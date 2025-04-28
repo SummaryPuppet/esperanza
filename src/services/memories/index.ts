@@ -35,7 +35,15 @@ const MEMORY_FILE = "./data/memories.json";
  * @class MemoryManager
  */
 export class MemoryManager {
+  private static instance: MemoryManager | null = null;
   private memories: Memory[] = [];
+
+  static getInstance(): MemoryManager {
+    if (!MemoryManager.instance) {
+      MemoryManager.instance = new MemoryManager();
+    }
+    return MemoryManager.instance;
+  }
 
   /**
    * Initializes the memory manager by loading data from file.
