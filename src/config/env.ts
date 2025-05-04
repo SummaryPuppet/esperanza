@@ -6,6 +6,8 @@ const envVars = z.object({
   OPENAI_API_KEY: z.string().optional(),
   LM_STUDIO_API_URL: z.string().url().optional(),
   LM_STUDIO_MODEL: z.string().optional(),
+  VOICE_PROVIDER: z.enum(["elevenlabs", "say"]).default("say"),
+  ELEVENLABS_API_KEY: z.string().optional(),
 });
 
 envVars.parse(process.env);
