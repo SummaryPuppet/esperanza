@@ -1,4 +1,4 @@
-import { Priority } from "../../shared/priority";
+import { Priority } from "../../types/priority";
 
 export interface Goal {
   id: string;
