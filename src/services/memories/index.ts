@@ -3,31 +3,13 @@
  * @module services/memories
  */
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import {
+  getAllMemories,
+  insertMemory,
+} from "@/db/repositories/memoryRespository";
 import { v4 as uuidv4 } from "uuid";
-import { Priority } from "../../shared/priority";
-
-/**
- * Interface that defines the structure of a memory.
- * @interface Memory
- */
-export interface Memory {
-  /** Unique identifier for the memory */
-  id: string;
-  /** Textual content of the memory */
-  content: string;
-  /** Creation timestamp in milliseconds */
-  timestamp: number;
-  /** Memory type based on its origin */
-  type: "user" | "agent" | "system";
-  /** Priority level of the memory */
-  priority: Priority;
-  /** Tags for classification and search */
-  tags: string[];
-}
-
-/** Path to the file where memories are stored */
-const MEMORY_FILE = "./data/memories.json";
+import { Memory } from "../../types/Memory";
+import { Priority } from "../../types/priority";
 
 /**
  * Class responsible for managing the agent's memories.
@@ -62,8 +44,8 @@ export class MemoryManager {
    */
   private async loadMemories(): Promise<void> {
     try {
-      const data = await readFile(MEMORY_FILE, "utf-8");
-      this.memories = JSON.parse(data) as Memory[];
+      const allMemories = getAllMemories();
+      this.memories = allMemories;
     } catch (error) {
       console.warn("No memories loaded, starting fresh.");
       this.memories = [];
@@ -71,18 +53,14 @@ export class MemoryManager {
   }
 
   /**
-   * Saves memories to the storage file.
+   * Saves memory in the database.
    * @returns {Promise<void>}
    * @private
    */
-  private async saveMemories(): Promise<void> {
+  private async saveMemory(): Promise<void> {
     try {
-      await mkdir("./data", { recursive: true });
-      await writeFile(
-        MEMORY_FILE,
-        JSON.stringify(this.memories, null, 2),
-        "utf-8"
-      );
+      const lastMemory = this.memories[this.memories.length - 1];
+      insertMemory(lastMemory);
     } catch (error) {
       console.error("Error saving memories:", error);
     }
@@ -112,7 +90,7 @@ export class MemoryManager {
     };
 
     this.memories.push(memory);
-    await this.saveMemories();
+    await this.saveMemory();
   }
 
   /**
