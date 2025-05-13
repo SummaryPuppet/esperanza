@@ -44,7 +44,7 @@ describe("Agent", () => {
     const response = await agent.think("Hello, how are you?");
 
     expect(response).toBe("Mocked response");
-    expect(askModel).toHaveBeenCalledWith("\nHello, how are you?");
+    expect(askModel).toHaveBeenCalledWith("\n\nHello, how are you?");
   });
 
   it("should try to save memory when input contains birthday information", async () => {
