@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "start": "ts-node src/index.ts",
+    "dev": "nodemon --watch src --exec ts-node -r tsconfig-paths/register src/index.ts",
+    "dev:vscode": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts --inspect=9229",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
     "inspector": "npx -y @modelcontextprotocol/inspector npx -y tsx src/index.ts",
     "test": "jest",
@@ -36,6 +37,7 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.2",
     "jest": "^29.7.0",
-    "ts-jest": "^29.3.2"
+    "ts-jest": "^29.3.2",
+    "tsconfig-paths": "^4.2.0"
   }
 }
