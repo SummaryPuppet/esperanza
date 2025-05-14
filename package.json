@@ -20,7 +20,7 @@
     "@anthropic-ai/sdk": "^0.40.0",
     "@modelcontextprotocol/sdk": "^1.10.2",
     "axios": "^1.9.0",
-    "better-sqlite2": "^11.10.0",
+    "better-sqlite3": "^11.10.0",
     "dotenv": "^16.5.0",
     "elevenlabs": "^1.57.0",
     "express": "^5.1.0",
