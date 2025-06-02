@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { askModelController } from "../controllers/models.controller";
+import {
+  askModelController,
+  askModelWithSystemContentController,
+  askModelWithToolsController,
+} from "../controllers/models.controller";
 
 const router = Router();
 
@@ -10,5 +14,9 @@ const router = Router();
  * @param {string} req.body.question - Question to process
  */
 router.post("/ask", askModelController);
+
+router.post("/ask-with-system-content", askModelWithSystemContentController);
+
+router.post("/ask-with-tools", askModelWithToolsController);
 
 export default router;
