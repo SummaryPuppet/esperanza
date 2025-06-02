@@ -1,26 +1,17 @@
-import { Memory } from "../../types/Memory";
-import db from "../connection";
+// import { Memory } from "../../types/Memory";
+import { insert, select } from "../orm";
+import { memorias } from "../schema";
 
-export const insertMemory = (memory: Memory) => {
-  const stmt = db.prepare(`
-    INSERT INTO memories (id, content, type, priority, tags, timestamp)
-    VALUES (@id, @content, @type, @priority, @tags, @timestamp)
-  `);
-  stmt.run(memory);
+type newMemory = typeof memorias.$inferInsert;
+
+export const insertMemory = async (memory: newMemory) => {
+  await insert(memorias, memory);
 };
 
-export const getAllMemories = (): Memory[] => {
-  const allMemories = db
-    .prepare("SELECT * FROM memories ORDER BY timestamp DESC")
-    .all() as Memory[];
-
-  return allMemories;
-};
-
-export const getMemoryById = (id: string): Memory | undefined => {
-  const memoryById = db
-    .prepare("SELECT * FROM memories WHERE id = ?")
-    .get(id) as Memory | undefined;
-
-  return memoryById;
+export const getMemories = async ({
+  id,
+}: {
+  id: number | null;
+}): Promise<newMemory[]> => {
+  return await select(memorias, memorias.id_memoria, id);
 };
