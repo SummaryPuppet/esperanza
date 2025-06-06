@@ -18,6 +18,11 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  whisper-service:
+    build: ./whisper
+    ports:
+      - "8080:8080"
+
 volumes:
   mysql_data:
     driver: local
