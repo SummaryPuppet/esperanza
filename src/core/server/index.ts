@@ -5,6 +5,7 @@
 
 import express from "express";
 import path from "path";
+import llmRouter from "./routes/llmAudio.route";
 import mcpRouter from "./routes/mcp.route";
 import modelsRouter from "./routes/models.route";
 import transcibeRouter from "./routes/transcribe.route";
@@ -33,6 +34,8 @@ app.use("/", mcpRouter);
 app.use("/", modelsRouter);
 
 app.use("/", transcibeRouter);
+
+app.use("/", llmRouter);
 
 app.use("/", voiceRouter);
 
