@@ -11,9 +11,9 @@ from .services.model_context_protocol import MCP_CLIENT
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # await MCP_CLIENT.initialize() # NOT IN HOT RELOAD
+    await MCP_CLIENT.initialize()  # NOT AVAILABLE IN HOT RELOAD
     yield
-    # await MCP_CLIENT.cleanup_servers()
+    await MCP_CLIENT.cleanup_servers()  # NOY AVAILABLE IN HOT RELOAD
 
 app = FastAPI(lifespan=lifespan)
 

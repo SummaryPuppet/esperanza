@@ -31,7 +31,5 @@ RUN chown -R appuser:appuser /app
 
 USER appuser
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-# CMD ["gunicorn", "--bind", "0.0.0.0:3000", "-k", "uvicorn.workers.UvicornWorker", "src.server\app:app"]
-CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "3000", "--reload"]
-# CMD ["uvicorn", "src.server.app:app", "--host", "0.0.0.0", "--port", "3000", "--reload", "--reload-dir", "src"]
+# CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "3000", "--reload"]
+CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "3000" ]

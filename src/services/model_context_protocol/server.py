@@ -12,7 +12,7 @@ import logging
 
 
 class Server:
-    def __init__(self, name: str, config: MCPServerJSON):
+    def __init__(self, name: str, config: Any):
         self.name: str = name
         self.config = config
         self.stdio_context: Any | None = None
@@ -39,9 +39,6 @@ class Server:
             command=command,
             args=self.config["args"],
             env=self.config.get("env")
-            # env={**os.environ, **self.config["env"]}
-            # if self.config.get("env")
-            # else None,
         )
 
         try:
@@ -82,7 +79,7 @@ class Server:
                         {
                             "name": tool.name,
                             "description": tool.description,
-                            "input_schema": tool.inputSchema
+                            "parameters": tool.inputSchema
                         }
                         for tool in item[1]
                     )

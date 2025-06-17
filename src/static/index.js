@@ -1,7 +1,7 @@
 let blobs = []
 let stream;
 let rec;
-let recordUrl = "/llm-audio";
+let recordUrl = "/llm-tools";
 let audioResponseHandler;
 let recording = false;
 

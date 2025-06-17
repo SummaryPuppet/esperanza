@@ -1,11 +1,7 @@
-from .types import MCPServerJSON
-
 import json
 
 
 class Config:
-    mcp_servers: dict[str, MCPServerJSON]
-
     def __init__(self, path: str = "/app/mcp.config.json"):
         self.__read_config(path)
 
