@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esperanza</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="flex flex-col items-center justify-center min-h-screen bg-gray-100"
+  >
+    <script defer type="module" src="/static/index.js"></script>
+    <h1 class="text-2xl">Esperanza</h1>
+
+    <button
+      id="record-button"
+      class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+    >
+      Comenzar grabación
+    </button>
+
+    <p id="response" class="text-gray-400 text-xl"></p>
+  </body>
+</html>

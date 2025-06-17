@@ -8,4 +8,6 @@ data/
 drizzle/
 
 uploads/*
-**/public/output.wav
+**/static/output.wav
+.venv/
+**/__pycache__/

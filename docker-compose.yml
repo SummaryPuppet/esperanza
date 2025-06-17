@@ -1,23 +1,13 @@
 services:
   esperanza:
-    build: .
+    image: esperanza
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - .:/app
-      - /app/node_modules
-    command: npm run dev
-
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: esperanza_root
-      MYSQL_DATABASE: esperanza_db
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-
   tts-service:
     build: ./coqui-ai-tts
     ports:
@@ -27,7 +17,3 @@ services:
     build: ./whisper
     ports:
       - "8080:8080"
-
-volumes:
-  mysql_data:
-    driver: local
